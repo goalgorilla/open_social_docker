@@ -11,12 +11,12 @@ RUN apt-get update && apt-get install -y \
   vim && \
   apt-get clean
 
-ADD prod/mailcatcher-ssmtp.conf /etc/ssmtp/ssmtp.conf
+ADD mailcatcher-ssmtp.conf /etc/ssmtp/ssmtp.conf
 
 RUN echo "hostname=goalgorilla.com" >> /etc/ssmtp/ssmtp.conf
 RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 
-ADD prod/php.ini /usr/local/etc/php/php.ini
+ADD php.ini /usr/local/etc/php/php.ini
 
 # Install extensions
 RUN docker-php-ext-install zip
