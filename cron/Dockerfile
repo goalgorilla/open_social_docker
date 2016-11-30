@@ -1,4 +1,4 @@
-FROM goalgorilla/drupal_social:latest
+FROM goalgorilla/open_social_docker:latest
 MAINTAINER devel@goalgorilla.com
 
 # Install development related packages.
