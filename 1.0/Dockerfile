@@ -22,6 +22,7 @@ ADD php.ini /usr/local/etc/php/php.ini
 # Install extensions
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install exif
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php
