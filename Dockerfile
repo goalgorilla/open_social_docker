@@ -5,6 +5,7 @@ MAINTAINER devel@goalgorilla.com
 RUN apt-get update && apt-get install -y \
   php-pclzip \
   zlib1g-dev \
+  libgmp-dev \
   mysql-client \
   git \
   ssmtp \
@@ -19,7 +20,11 @@ RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail
 
 ADD php.ini /usr/local/etc/php/php.ini
 
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+
 # Install extensions
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install exif
