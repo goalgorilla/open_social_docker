@@ -58,7 +58,6 @@ RUN composer global require drush/drush:8.* \
 WORKDIR /var/www/
 ADD composer.json /var/www/composer.json
 RUN rm -f /var/www/composer.lock \
-    && rm -rf /root/.composer \
     && composer install --prefer-dist --no-interaction --no-dev
 
 # Add .bashrc
