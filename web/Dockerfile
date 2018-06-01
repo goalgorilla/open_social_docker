@@ -56,8 +56,8 @@ RUN composer global require drush/drush:8.* \
 # Install Open Social via Composer.
 WORKDIR /var/www/
 ADD composer.json /var/www/composer.json
-RUN rm -f /var/www/composer.lock
-    && rm -rf /root/.composer
+RUN rm -f /var/www/composer.lock \
+    && rm -rf /root/.composer \
     && composer install --prefer-dist --no-interaction --no-dev
 
 # Add .bashrc
