@@ -17,6 +17,7 @@ RUN set -ex \
 	    bash-completion \
 	    nano \
 	    vim \
+	    git \
 	&& docker-php-ext-configure gd \
 		--with-freetype-dir=/usr/include/ \
 		--with-jpeg-dir=/usr/include/ \
