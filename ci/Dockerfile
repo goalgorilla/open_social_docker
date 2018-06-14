@@ -5,6 +5,12 @@ ADD php.ini /usr/local/etc/php/php.ini
 
 ### CI SPECIFIC - START ###
 
+# GMP library.
+RUN apt-get install -y libgmp-dev
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
+
 # Install composer dependencies.
 RUN composer install --prefer-dist --no-interaction
 
