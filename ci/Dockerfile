@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.1-fpm-alpine
 
 # install the PHP extensions we need
 # postgresql-dev is needed for https://bugs.alpinelinux.org/issues/3642
@@ -31,11 +31,6 @@ RUN set -ex \
 	)" \
 	&& apk add --virtual .drupal-phpexts-rundeps $runDeps
 
-# Install Xdebug.
-#RUN apk add --no-cache $PHPIZE_DEPS \
-#    && pecl install -f xdebug-2.6.0 \
-#    && docker-php-ext-enable xdebug
-
 # Remove install and temp files.
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
 
@@ -53,12 +48,6 @@ RUN composer global require drush/drush:8.* \
     && rm -f /usr/local/bin/drush \
     && ln -s ~/.composer/vendor/bin/drush /usr/local/bin/drush \
     && drush core-status -y
-
-# Install Open Social via Composer.
-#WORKDIR /var/www/
-#ADD composer.json /var/www/composer.json
-#RUN rm -f /var/www/composer.lock \
-#    && composer install --prefer-dist --no-interaction --no-dev
 
 # Add .bashrc
 RUN touch /root/.bashrc \
