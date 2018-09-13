@@ -13,3 +13,17 @@ latest: production image
 ci: contains development packages in composer.json
 dev: contains development packages and xdebug
 cron: contains cron and runs cron script
+
+# Issues
+For any issues with the platform we kindly ask you to use the [drupal.org](http://www.drupal.org/project/issues/social) issue queue. This way we can centralise all the information and make the feedback available for other users for documentation purposes. Next to giving people the credit they deserve.
+
+# **Slack**
+
+We are also available on Slack. Visit https://www.drupal.org/slack to see how you can join Drupal Slack. After that you can find us in the #opensocial channel. Our team will be available to answer your questions during our community hours there too.
+
+# **Community hours**
+
+Every week we are available on Slack on:
+
+- Wednesday between 16:00 and 17:00 Europe/Amsterdam Timezone
+- Friday between 10:00 and 11:00 Europe/Amsterdam Timezone
