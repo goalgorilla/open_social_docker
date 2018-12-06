@@ -10,7 +10,7 @@
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "cweagans/composer-patches": "^1.0",
         "drush/drush": "8.*@stable",
-        "goalgorilla/open_social": "dev-8.x-4.x",
+        "goalgorilla/open_social": "^4.0",
         "goalgorilla/open_social_scripts": "dev-master"
     },
     "require-dev": {
@@ -100,6 +100,11 @@
                 "type:drupal-drush"
             ]
         },
-        "enable-patching": true
+        "enable-patching": true,
+        "patches": {
+            "squizlabs/html_codesniffer": {
+                "Translatings does not work": "patches/DS-5443-accessibility.patch"
+            }
+        }
     }
 }
