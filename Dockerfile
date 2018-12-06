@@ -30,7 +30,7 @@ RUN rm -rf /root/.composer
 
 ADD composer.json /var/www/composer.json
 WORKDIR /var/www/
-RUN composer install --prefer-dist --no-interaction --no-dev
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist --no-interaction --no-dev
 
 WORKDIR /var/www/html/
 RUN chown -R www-data:www-data *
