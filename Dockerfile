@@ -21,8 +21,8 @@ ADD php.ini /usr/local/etc/php/php.ini
 RUN docker-php-ext-install zip bcmath exif
 
 # Install Composer.
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer global require hirak/prestissimo
 
 # Install Open Social via composer.
 RUN rm -f /var/www/composer.lock
