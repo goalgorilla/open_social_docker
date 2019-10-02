@@ -1,4 +1,4 @@
-FROM drupal:8.6
+FROM drupal:8.7
 MAINTAINER devel@goalgorilla.com
 
 # Install packages.
@@ -30,6 +30,7 @@ RUN rm -rf /root/.composer
 
 ADD composer.json /var/www/composer.json
 WORKDIR /var/www/
+ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist --no-interaction --no-dev
 
 WORKDIR /var/www/html/

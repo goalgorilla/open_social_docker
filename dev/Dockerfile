@@ -53,3 +53,7 @@ RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
 
 ### DEV SPECIFIC - END ###
+
+# Redis.
+RUN pecl install redis \
+ && docker-php-ext-enable redis
