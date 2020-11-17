@@ -1,19 +1,20 @@
-FROM drupal:8.9
+FROM drupal:8.7
 MAINTAINER devel@goalgorilla.com
 
 # Install packages.
 RUN apt-get update && apt-get install -y \
   zlib1g-dev \
-  mysql-client \
+  mariadb-client \
   git \
-  ssmtp \
+  msmtp \
+  libzip-dev \
   nano \
   vim && \
   apt-get clean
 
-ADD mailcatcher-ssmtp.conf /etc/ssmtp/ssmtp.conf
+ADD mailcatcher-msmtp.conf /etc/msmtprc
 
-RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
+RUN echo 'sendmail_path = "/usr/bin/msmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 
 ADD php.ini /usr/local/etc/php/php.ini
 
