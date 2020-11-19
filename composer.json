@@ -6,17 +6,14 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "composer/installers": "^1.0",
-        "drupal-composer/drupal-scaffold": "^2.0.0",
-        "cweagans/composer-patches": "^1.0",
         "drush/drush": "8.*@stable",
-        "goalgorilla/open_social": "dev-8.x-4.x",
+        "goalgorilla/open_social": "dev-8.x-9.x",
         "goalgorilla/open_social_scripts": "dev-master"
     },
     "require-dev": {
         "jcalderonzumba/gastonjs": "~1.0.2",
         "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
-        "mikey179/vfsStream": "~1.2",
+        "mikey179/vfsstream": "~1.2",
         "symfony/css-selector": "~2.8",
         "behat/behat": "3.*@stable",
         "behat/mink": "1.*@stable",
