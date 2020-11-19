@@ -4,6 +4,9 @@ MAINTAINER devel@goalgorilla.com
 ### CI SPECIFIC - START ###
 ### - Making changes here? Also apply in ../ci/Dockerfile ###
 
+# Specify the work directory.
+WORKDIR /var/www/
+
 # Install composer dependencies.
 RUN composer install --prefer-dist --no-interaction
 
