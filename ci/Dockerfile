@@ -1,6 +1,9 @@
 FROM goalgorilla/open_social_docker:latest
 MAINTAINER devel@goalgorilla.com
 
+# Specify the work directory.
+WORKDIR /var/www/
+
 ADD php.ini /usr/local/etc/php/php.ini
 
 ### CI SPECIFIC - START ###
