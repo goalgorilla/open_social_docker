@@ -24,7 +24,6 @@ RUN docker-php-ext-install zip bcmath exif
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
-RUN composer self-update --1
 
 # Install Open Social via composer.
 RUN rm -f /var/www/composer.lock
