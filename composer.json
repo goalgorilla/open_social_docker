@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "require": {
         "drush/drush": "8.*@stable",
-        "goalgorilla/open_social": "dev-8.x-9.x",
+        "goalgorilla/open_social": "10.1.x-dev",
         "goalgorilla/open_social_scripts": "dev-master"
     },
     "require-dev": {
@@ -33,7 +33,8 @@
     "repositories": {
         "0": {
             "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "url": "https://packages.drupal.org/8",
+            "exclude": ["goalgorilla/open_social", "drupal/social"]
         },
         "1": {
             "type": "composer",
@@ -53,16 +54,9 @@
         },
         "social": {
             "type": "git",
-            "url": "https://github.com/goalgorilla/open_social.git"
+            "url": "https://github.com/goalgorilla/open_social.git",
+            "only": ["goalgorilla/open_social", "drupal/social"]
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
-        ],
-        "post-update-cmd": [
-            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
-        ]
     },
     "extra": {
         "installer-types": [
@@ -97,6 +91,11 @@
                 "type:drupal-drush"
             ]
         },
-        "enable-patching": true
+        "enable-patching": true,
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "html/"
+            }
+        }
     }
 }
