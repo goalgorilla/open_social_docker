@@ -33,7 +33,7 @@ RUN rm -f /var/www/composer.lock
 RUN rm -rf /root/.composer
 
 ADD composer.json /var/www/composer.json
-WORKDIR /var/www/
+
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN COMPOSER_MEMORY_LIMIT=-1 composer install
 
@@ -47,9 +47,6 @@ RUN php -r 'opcache_reset();'
 
 # Fix shell.
 RUN echo "export TERM=xterm" >> ~/.bashrc
-
-# Install composer dependencies.
-RUN composer install --prefer-dist --no-interaction
 
 # Unfortunately, adding the composer vendor dir to the PATH doesn't seem to work. So:
 RUN ln -s /root/.composer/vendor/bin/behat /usr/local/bin/behat
@@ -73,8 +70,9 @@ RUN pecl install xdebug-3.1.1 && \
     docker-php-ext-enable xdebug && \
     sed -i '1 a xdebug.client_port=9003' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     sed -i '1 a xdebug.mode=debug' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    sed -i '1 a xdebug.start_with_request=yes' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     sed -i '1 a xdebug.discover_client_host=true' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    sed -i '1 a xdebug.client_host=host.docker.internal' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    sed -i '1 a xdebug.start_with_request=yes' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     sed -i '1 a xdebug.idekey=PHPSTORMi' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Blackfire
