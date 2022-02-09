@@ -5,30 +5,56 @@
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "update-with-dependencies": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "cweagans/composer-patches": true,
+            "oomphinc/composer-installers-extender": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/console-extend-plugin": true,
+            "zaporylie/composer-drupal-optimizations": true
+        }
+    },
     "require": {
-        "drush/drush": "8.*@stable",
-        "goalgorilla/open_social": "10.1.x-dev",
-        "goalgorilla/open_social_scripts": "dev-master"
+        "blackfire/php-sdk": "^v1.27.1",
+        "drupal/redis": "^1.5",
+        "drush/drush": "10.*@stable",
+        "goalgorilla/open_social": "dev-issue/3260861-php8-support",
+        "goalgorilla/open_social_scripts": "^2.0"
     },
     "require-dev": {
-        "jcalderonzumba/gastonjs": "~1.0.2",
-        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
-        "mikey179/vfsstream": "~1.2",
-        "symfony/css-selector": "~2.8",
-        "behat/behat": "3.*@stable",
-        "behat/mink": "1.*@stable",
-        "behat/mink-extension": "*",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
+        "dealerdirect/phpcodesniffer-composer-installer": "~0.7.1",
         "drupal/coder": "^8.3",
-        "drupal/drupal-extension": "^3.4",
-        "phpmd/phpmd": "@stable",
-        "sebastian/phpcpd": "@stable",
-        "phpunit/phpunit": "^6.5",
-        "phpunit/php-timer": "^1.0.9",
-        "drupal/console": "@stable",
-        "zaporylie/composer-drupal-optimizations": "^1.0",
-        "squizlabs/html_codesniffer": "*"
+        "drupal/composer_deploy": "^1.6",
+        "drupal/core-dev": "~9.3.5",
+        "drupal/devel": "^4.1",
+        "drupal/drupal-extension": "^4.1",
+        "drupal/upgrade_status": "^3.11",
+        "jcalderonzumba/gastonjs": "~1.2.0",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.3",
+        "phpstan/phpstan": "1.4.2",
+        "mglaman/phpstan-drupal": "1.1.4",
+        "mikey179/vfsstream": "^1.6",
+        "palantirnet/drupal-rector": "^0.12.0",
+        "phpmd/phpmd": "^2.10",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "slevomat/coding-standard": "^7.0",
+        "squizlabs/html_codesniffer": "*",
+        "symplify/easy-coding-standard": "^9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\socialblue\\": "html/themes/contrib/socialblue/src",
+            "Drupal\\socialbase\\": "html/themes/contrib/socialbase/src",
+            "Drupal\\bootstrap\\": "html/themes/contrib/bootstrap/src"
+        }
     },
     "repositories": {
         "0": {
@@ -40,11 +66,11 @@
             "type": "composer",
             "url": "https://asset-packagist.org"
         },
-        "3": {
+        "2": {
             "type": "package",
             "package": {
                 "name": "squizlabs/html_codesniffer",
-                "version": "1.0.0",
+                "version": "2.5.1",
                 "source": {
                     "url": "https://github.com/squizlabs/HTML_CodeSniffer.git",
                     "type": "git",
@@ -52,10 +78,15 @@
                 }
             }
         },
-        "social": {
+        "3": {
             "type": "git",
             "url": "https://github.com/goalgorilla/open_social.git",
             "only": ["goalgorilla/open_social", "drupal/social"]
+        },
+        "4": {
+            "type": "composer",
+            "url": "https://repo.packagist.com/opensocial/",
+            "except":  ["drupal/social"]
         }
     },
     "extra": {
@@ -92,6 +123,9 @@
             ]
         },
         "enable-patching": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "html/"

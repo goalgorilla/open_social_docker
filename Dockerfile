@@ -1,4 +1,4 @@
-FROM drupal:8.9
+FROM drupal:9.3
 MAINTAINER devel@goalgorilla.com
 
 # Install packages.
