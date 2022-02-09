@@ -82,11 +82,6 @@
             "type": "git",
             "url": "https://github.com/goalgorilla/open_social.git",
             "only": ["goalgorilla/open_social", "drupal/social"]
-        },
-        "4": {
-            "type": "composer",
-            "url": "https://repo.packagist.com/opensocial/",
-            "except":  ["drupal/social"]
         }
     },
     "extra": {
