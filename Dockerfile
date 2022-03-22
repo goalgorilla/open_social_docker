@@ -19,7 +19,7 @@ RUN echo 'sendmail_path = "/usr/bin/msmtp -t"' > /usr/local/etc/php/conf.d/mail.
 ADD php.ini /usr/local/etc/php/php.ini
 
 # Install extensions
-RUN docker-php-ext-install zip bcmath exif
+RUN docker-php-ext-install zip bcmath exif sockets
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php
