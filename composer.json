@@ -1,101 +1,123 @@
 {
-    "name": "goalgorilla/social_docker",
-    "description": "Social docker template for composer based Open Social projects.",
-    "type": "project",
-    "license": "GPL-2.0-or-later",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "drush/drush": "8.*@stable",
-        "goalgorilla/open_social": "10.1.x-dev",
-        "goalgorilla/open_social_scripts": "dev-master"
-    },
-    "require-dev": {
-        "jcalderonzumba/gastonjs": "~1.0.2",
-        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
-        "mikey179/vfsstream": "~1.2",
-        "symfony/css-selector": "~2.8",
-        "behat/behat": "3.*@stable",
-        "behat/mink": "1.*@stable",
-        "behat/mink-extension": "*",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "drupal/coder": "^8.3",
-        "drupal/drupal-extension": "^3.4",
-        "phpmd/phpmd": "@stable",
-        "sebastian/phpcpd": "@stable",
-        "phpunit/phpunit": "^6.5",
-        "phpunit/php-timer": "^1.0.9",
-        "drupal/console": "@stable",
-        "zaporylie/composer-drupal-optimizations": "^1.0",
-        "squizlabs/html_codesniffer": "*"
-    },
-    "repositories": {
-        "0": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8",
-            "exclude": ["goalgorilla/open_social", "drupal/social"]
-        },
-        "1": {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        },
-        "3": {
-            "type": "package",
-            "package": {
-                "name": "squizlabs/html_codesniffer",
-                "version": "1.0.0",
-                "source": {
-                    "url": "https://github.com/squizlabs/HTML_CodeSniffer.git",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        },
-        "social": {
-            "type": "git",
-            "url": "https://github.com/goalgorilla/open_social.git",
-            "only": ["goalgorilla/open_social", "drupal/social"]
-        }
-    },
-    "extra": {
-        "installer-types": [
-            "bower-asset",
-            "npm-asset"
-        ],
-        "installer-paths": {
-            "html/core": [
-                "drupal/core"
-            ],
-            "html/modules/contrib/{$name}": [
-                "type:drupal-module"
-            ],
-            "html/profiles/contrib/social": [
-                "goalgorilla/open_social"
-            ],
-            "html/profiles/contrib/{$name}": [
-                "type:drupal-profile"
-            ],
-            "html/themes/contrib/{$name}": [
-                "type:drupal-theme"
-            ],
-            "html/libraries/{$name}": [
-                "type:drupal-library",
-                "type:bower-asset",
-                "type:npm-asset"
-            ],
-            "scripts/{$name}": [
-                "goalgorilla/open_social_scripts"
-            ],
-            "drush/contrib/{$name}": [
-                "type:drupal-drush"
-            ]
-        },
-        "enable-patching": true,
-        "drupal-scaffold": {
-            "locations": {
-                "web-root": "html/"
-            }
-        }
+  "name": "goalgorilla/social_docker",
+  "description": "Social docker template for composer based Open Social projects.",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "update-with-dependencies": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true,
+      "drupal/core-composer-scaffold": true,
+      "cweagans/composer-patches": true,
+      "oomphinc/composer-installers-extender": true,
+      "phpstan/extension-installer": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "drupal/console-extend-plugin": true,
+      "zaporylie/composer-drupal-optimizations": true
     }
+  },
+  "require": {
+    "blackfire/php-sdk": "^v1.27.1",
+    "drupal/redis": "^1.5",
+    "drush/drush": "10.*@stable",
+    "goalgorilla/open_social": "dev-main",
+    "goalgorilla/open_social_scripts": "^2.0"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "~0.7.1",
+    "drupal/coder": "^8.3",
+    "drupal/composer_deploy": "^1.6",
+    "drupal/core-dev": "~9.2.13",
+    "drupal/devel": "^4.1",
+    "drupal/drupal-extension": "^4.1",
+    "drupal/upgrade_status": "^3.11",
+    "jcalderonzumba/gastonjs": "~1.2.0",
+    "jcalderonzumba/mink-phantomjs-driver": "~0.3.3",
+    "phpstan/phpstan": "1.4.6",
+    "mglaman/phpstan-drupal": "1.1.12",
+    "mikey179/vfsstream": "^1.6",
+    "palantirnet/drupal-rector": "^0.12",
+    "phpmd/phpmd": "^2.10",
+    "phpspec/prophecy-phpunit": "^2.0",
+    "phpstan/extension-installer": "^1.1",
+    "phpstan/phpstan-deprecation-rules": "^1.0",
+    "slevomat/coding-standard": "^7.0",
+    "squizlabs/html_codesniffer": "*",
+    "symplify/easy-coding-standard": "^9.4"
+  },
+  "repositories": {
+    "0": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8",
+      "exclude": ["goalgorilla/open_social", "drupal/social"]
+    },
+    "1": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    },
+    "2": {
+      "type": "package",
+      "package": {
+        "name": "squizlabs/html_codesniffer",
+        "version": "2.5.1",
+        "source": {
+          "url": "https://github.com/squizlabs/HTML_CodeSniffer.git",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    },
+    "3": {
+      "type": "git",
+      "url": "https://github.com/goalgorilla/open_social.git",
+      "only": ["goalgorilla/open_social", "drupal/social"]
+    }
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "installer-paths": {
+      "html/core": [
+        "drupal/core"
+      ],
+      "html/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "html/profiles/contrib/social": [
+        "goalgorilla/open_social"
+      ],
+      "html/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "html/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "html/libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset"
+      ],
+      "scripts/{$name}": [
+        "goalgorilla/open_social_scripts"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "enable-patching": true,
+    "patchLevel": {
+      "drupal/core": "-p2"
+    },
+    "drupal-scaffold": {
+      "locations": {
+        "web-root": "html/"
+      }
+    }
+  }
 }
