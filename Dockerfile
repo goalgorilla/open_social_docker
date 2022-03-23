@@ -1,9 +1,10 @@
-FROM drupal:8.9
+FROM drupal:8.9.20
 MAINTAINER devel@goalgorilla.com
 
 # Install packages.
 RUN apt-get update && apt-get install -y \
   zlib1g-dev \
+  libssl-dev \
   mariadb-client \
   git \
   msmtp \
