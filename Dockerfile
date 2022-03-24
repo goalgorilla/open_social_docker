@@ -1,4 +1,4 @@
-FROM drupal:9.3.5
+FROM drupal:9.3-php8.0-fpm
 MAINTAINER devel@goalgorilla.com
 
 # Install packages.
