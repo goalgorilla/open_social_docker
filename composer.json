@@ -25,7 +25,7 @@
     "drupal/redis": "^1.5",
     "drush/drush": "11.*@stable",
     "goalgorilla/open_social": "dev-feature/3260861-php-8-support-updated-branch",
-    "goalgorilla/open_social_scripts": "^3.0"
+    "goalgorilla/open_social_scripts": "dev-internal/update-docker"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "~0.7.1",
@@ -37,14 +37,15 @@
     "drupal/upgrade_status": "^3.11",
     "jcalderonzumba/gastonjs": "~1.2.0",
     "jcalderonzumba/mink-phantomjs-driver": "~0.3.3",
-    "phpstan/phpstan": "1.4.6",
-    "mglaman/phpstan-drupal": "1.1.12",
+    "phpstan/phpstan": "1.7.1",
+    "mglaman/phpstan-drupal": "1.1.17",
     "mikey179/vfsstream": "^1.6",
     "palantirnet/drupal-rector": "^0.12",
     "phpmd/phpmd": "^2.10",
     "phpspec/prophecy-phpunit": "^2.0",
     "phpstan/extension-installer": "^1.1",
     "phpstan/phpstan-deprecation-rules": "^1.0",
+    "phpstan/phpstan-phpunit": "1.1.1",
     "slevomat/coding-standard": "^7.0",
     "squizlabs/html_codesniffer": "*",
     "symplify/easy-coding-standard": "^9.4"
