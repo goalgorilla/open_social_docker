@@ -24,14 +24,14 @@
     "blackfire/php-sdk": "^v1.27.1",
     "drupal/redis": "^1.5",
     "drush/drush": "11.*@stable",
-    "goalgorilla/open_social": "dev-feature/3260861-php-8-support-updated-branch",
-    "goalgorilla/open_social_scripts": "dev-internal/update-docker"
+    "goalgorilla/open_social": "dev-main",
+    "goalgorilla/open_social_scripts": "^3.1"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "~0.7.1",
     "drupal/coder": "^8.3",
     "drupal/composer_deploy": "^1.6",
-    "drupal/core-dev": "~9.3.15",
+    "drupal/core-dev": "~9.3.16",
     "drupal/devel": "^4.1",
     "drupal/drupal-extension": "^4.1",
     "drupal/upgrade_status": "^3.11",
