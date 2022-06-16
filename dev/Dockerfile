@@ -1,4 +1,4 @@
-FROM goalgorilla/open_social_docker:d9
+FROM goalgorilla/open_social_docker:latest
 MAINTAINER devel@goalgorilla.com
 
 ### CI SPECIFIC - START ###
