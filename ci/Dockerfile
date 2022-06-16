@@ -20,7 +20,6 @@ RUN composer install --prefer-dist --no-interaction
 # Unfortunately, adding the composer vendor dir to the PATH doesn't seem to work. So:
 RUN ln -s /root/.composer/vendor/bin/behat /usr/local/bin/behat
 RUN ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit
-RUN ln -s /var/www/vendor/bin/drupal /usr/local/bin/drupal
 
 ### CI SPECIFIC - END ###
 
