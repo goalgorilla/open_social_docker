@@ -1,4 +1,4 @@
-FROM goalgorilla/open_social_docker:latest
+FROM goalgorilla/open_social_docker:latest-php7
 MAINTAINER devel@goalgorilla.com
 
 # Install development related packages.
