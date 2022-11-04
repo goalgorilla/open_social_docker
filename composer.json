@@ -11,18 +11,18 @@
     "sort-packages": true,
     "allow-plugins": {
       "composer/installers": true,
-      "drupal/core-composer-scaffold": true,
       "cweagans/composer-patches": true,
+      "drupal/core-composer-scaffold": true,
       "oomphinc/composer-installers-extender": true,
-      "phpstan/extension-installer": true,
       "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true,
       "drupal/console-extend-plugin": true,
       "zaporylie/composer-drupal-optimizations": true
     }
   },
   "require": {
     "blackfire/php-sdk": "^v1.27.1",
-    "drupal/redis": "^1.5",
+    "drupal/redis": "^1.6",
     "goalgorilla/open_social": "dev-main"
   },
   "require-dev": {

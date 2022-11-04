@@ -1,4 +1,4 @@
-FROM goalgorilla/open_social_docker:latest
+FROM goalgorilla/open_social_docker:latest-php8.1
 MAINTAINER devel@goalgorilla.com
 
 ### CI SPECIFIC - START ###
