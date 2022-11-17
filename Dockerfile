@@ -5,6 +5,7 @@ MAINTAINER devel@goalgorilla.com
 RUN apt-get update && apt-get install -y \
   zlib1g-dev \
   libssl-dev \
+  libxml2-dev \
   mariadb-client \
   curl \
   wget \
@@ -24,7 +25,7 @@ RUN echo 'sendmail_path = "/usr/bin/msmtp -t"' > /usr/local/etc/php/conf.d/mail.
 ADD php.ini /usr/local/etc/php/php.ini
 
 # Install extensions
-RUN docker-php-ext-install zip bcmath exif sockets
+RUN docker-php-ext-install zip bcmath exif sockets soap
 
 # Install Composer.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
