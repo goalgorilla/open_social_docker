@@ -1,4 +1,4 @@
-FROM goalgorilla/open_social_docker:latest-drupal95
+FROM goalgorilla/open_social_docker:latest-experimental
 MAINTAINER devel@goalgorilla.com
 
 ### CI SPECIFIC - START ###
