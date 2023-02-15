@@ -2,7 +2,7 @@ FROM drupal:9.5-php8.0
 MAINTAINER devel@goalgorilla.com
 
 # Install packages.
-RUN apt-get update && apt-get install -y \
+RUN apt-get clean && apt-get update && apt-get install -y \
   zlib1g-dev \
   libssl-dev \
   libxml2-dev \
@@ -34,15 +34,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     mv composer.phar /usr/local/bin/composer && \
 	php -r "unlink('composer-setup.php');"
 
-
-# Install Open Social via composer.
-RUN rm -f /var/www/composer.lock
-RUN rm -rf /root/.composer
-
-ADD composer.json /var/www/composer.json
-WORKDIR /var/www/
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist --no-interaction --no-dev
 
 WORKDIR /var/www/html/
 RUN chown -R www-data:www-data *
@@ -52,7 +44,17 @@ RUN wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/down
 	chmod +x drush.phar && \
 	mv drush.phar /usr/local/bin/drush
 
-RUN php -r 'opcache_reset();'
+# GMP library.
+RUN apt-get install -y libgmp-dev
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
+
+# Redis.
+RUN pecl install redis \
+ && docker-php-ext-enable redis
 
 # Fix shell.
 RUN echo "export TERM=xterm" >> ~/.bashrc
+
+RUN php -r 'opcache_reset();'
