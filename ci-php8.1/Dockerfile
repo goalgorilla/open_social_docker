@@ -69,6 +69,11 @@ RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
 RUN docker-php-ext-configure gmp
 RUN docker-php-ext-install gmp
 
+# simplesamlphp/simplesamlphp 2.1.0 requires ext-intl.
+RUN apt-get install -y libicu-dev g++
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
+
 # Install composer dependencies.
 RUN composer install --prefer-dist --no-interaction
 
