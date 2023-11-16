@@ -1,4 +1,4 @@
-FROM drupal:9.5-php8.1
+FROM drupal:10.0.11-php8.1
 MAINTAINER devel@goalgorilla.com
 
 # Install packages.
@@ -46,15 +46,14 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist --no-interaction --n
 WORKDIR /var/www/html/
 RUN chown -R www-data:www-data *
 
-# Install Drush launcher.
-RUN wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/download/0.10.1/drush.phar && \
-	chmod +x drush.phar && \
-	mv drush.phar /usr/local/bin/drush
-
 RUN php -r 'opcache_reset();'
 
 # Fix shell.
 RUN echo "export TERM=xterm" >> ~/.bashrc
+
+# Fix drush after Drush 12 as drush launcher is removed
+RUN echo 'export PATH="$PATH:./vendor/bin:/usr/local/bin' >> ~/.bashrc
+
 
 ### CI SPECIFIC - START ###
 ### - Making changes here? Also apply in ../ci/Dockerfile ###
