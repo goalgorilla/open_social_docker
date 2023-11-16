@@ -72,10 +72,12 @@ RUN docker-php-ext-install intl
 # Install composer dependencies.
 RUN composer install --prefer-dist --no-interaction
 
+# Drush 12 removes the need for the launcher and uses composer from vendor binary.
+RUN echo 'export PATH="$PATH:./vendor/bin:/usr/local/bin"' >> ~/.bashrc
+
 # Unfortunately, adding the composer vendor dir to the PATH doesn't seem to work. So:
 RUN ln -s /root/.composer/vendor/bin/behat /usr/local/bin/behat
 RUN ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit
-RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/drush
 
 ### CI SPECIFIC - END ###
 
