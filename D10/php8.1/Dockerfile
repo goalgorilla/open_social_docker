@@ -51,10 +51,6 @@ RUN php -r 'opcache_reset();'
 # Fix shell.
 RUN echo "export TERM=xterm" >> ~/.bashrc
 
-# Fix drush after Drush 12 as drush launcher is removed
-RUN echo 'export PATH="$PATH:./vendor/bin:/usr/local/bin' >> ~/.bashrc
-
-
 ### CI SPECIFIC - START ###
 ### - Making changes here? Also apply in ../ci/Dockerfile ###
 
@@ -67,6 +63,7 @@ RUN composer install --prefer-dist --no-interaction
 # Unfortunately, adding the composer vendor dir to the PATH doesn't seem to work. So:
 RUN ln -s /root/.composer/vendor/bin/behat /usr/local/bin/behat
 RUN ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit
+RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/drush
 
 ### CI SPECIFIC - END ###
 
