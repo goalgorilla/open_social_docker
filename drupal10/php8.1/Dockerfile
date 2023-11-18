@@ -63,7 +63,9 @@ RUN composer install --prefer-dist --no-interaction
 # Unfortunately, adding the composer vendor dir to the PATH doesn't seem to work. So:
 RUN ln -s /root/.composer/vendor/bin/behat /usr/local/bin/behat
 RUN ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit
-RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/drush
+
+# Drush 12 removes the need for the launcher and uses composer from vendor binary.
+ENV PATH "$PATH:./vendor/bin:/usr/local/bin"
 
 ### CI SPECIFIC - END ###
 
