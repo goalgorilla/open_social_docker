@@ -95,6 +95,10 @@ RUN pecl install xdebug-3.1.1 && \
     sed -i '1 a xdebug.client_host=host.docker.internal' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     sed -i '1 a xdebug.idekey=PHPSTORMi' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+# PCOV
+RUN pecl install pcov && \
+    docker-php-ext-enable pcov
+
 # Blackfire
 # @todo Fix PHP 8 based blackfire installation
 #RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
