@@ -65,7 +65,7 @@ RUN ln -s /root/.composer/vendor/bin/behat /usr/local/bin/behat
 RUN ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit
 
 # Drush 12 removes the need for the launcher and uses composer from vendor binary.
-ENV PATH "$PATH:./vendor/bin:/usr/local/bin"
+ENV PATH "$PATH:/var/www/vendor/bin:/usr/local/bin"
 
 ### CI SPECIFIC - END ###
 
