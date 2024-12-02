@@ -78,7 +78,7 @@ ENV PATH "$PATH:/var/www/vendor/bin:/usr/local/bin"
 ADD php.ini /usr/local/etc/php/php.ini
 
 # Xdebug.
-RUN pecl install xdebug-3.1.1 && \
+RUN pecl install xdebug-3.3.2 && \
     docker-php-ext-enable xdebug && \
     sed -i '1 a xdebug.client_port=9003' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     sed -i '1 a xdebug.mode=debug' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
