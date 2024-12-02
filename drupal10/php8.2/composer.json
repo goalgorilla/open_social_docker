@@ -1,0 +1,106 @@
+{
+  "name": "goalgorilla/social_docker",
+  "description": "Social docker template for composer based Open Social projects.",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "update-with-dependencies": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true,
+      "cweagans/composer-patches": true,
+      "drupal/core-composer-scaffold": true,
+      "oomphinc/composer-installers-extender": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true,
+      "drupal/console-extend-plugin": true,
+      "zaporylie/composer-drupal-optimizations": true
+    }
+  },
+  "require": {
+    "blackfire/php-sdk": "^v1.27.1",
+    "drupal/redis": "^1.6",
+    "goalgorilla/open_social": "dev-main"
+  },
+  "require-dev": {
+    "goalgorilla/open_social_dev": "dev-main",
+    "palantirnet/drupal-rector": "^0.12",
+    "phpmd/phpmd": "^2.10",
+    "squizlabs/html_codesniffer": "*",
+    "symplify/easy-coding-standard": "^9.4"
+  },
+  "repositories": {
+    "0": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8",
+      "exclude": ["goalgorilla/open_social", "drupal/social"]
+    },
+    "1": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    },
+    "2": {
+      "type": "package",
+      "package": {
+        "name": "squizlabs/html_codesniffer",
+        "version": "2.5.1",
+        "source": {
+          "url": "https://github.com/squizlabs/HTML_CodeSniffer.git",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    },
+    "3": {
+      "type": "git",
+      "url": "https://github.com/goalgorilla/open_social.git",
+      "only": ["goalgorilla/open_social", "drupal/social"]
+    }
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "installer-paths": {
+      "html/core": [
+        "drupal/core"
+      ],
+      "html/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "html/profiles/contrib/social": [
+        "goalgorilla/open_social"
+      ],
+      "html/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "html/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "html/libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset"
+      ],
+      "scripts/{$name}": [
+        "goalgorilla/open_social_scripts"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "enable-patching": true,
+    "patchLevel": {
+      "drupal/core": "-p2"
+    },
+    "drupal-scaffold": {
+      "locations": {
+        "web-root": "html/"
+      }
+    }
+  }
+}
