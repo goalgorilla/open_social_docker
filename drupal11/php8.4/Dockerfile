@@ -25,7 +25,11 @@ RUN echo 'sendmail_path = "/usr/bin/msmtp -t"' > /usr/local/etc/php/conf.d/mail.
 ADD php.ini /usr/local/etc/php/php.ini
 
 # Install extensions
-RUN docker-php-ext-install zip bcmath exif sockets soap
+RUN curl -sSLf \
+        -o /usr/local/bin/install-php-extensions \
+        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
+    chmod +x /usr/local/bin/install-php-extensions
+RUN install-php-extensions zip bcmath exif sockets soap gmp intl redis rdkafka
 
 # Install Composer.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -59,17 +63,6 @@ WORKDIR /var/www/
 ADD php.ini /usr/local/etc/php/php.ini
 
 ### CI SPECIFIC - START ###
-
-# GMP library.
-RUN apt-get install -y libgmp-dev
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
-RUN docker-php-ext-configure gmp
-RUN docker-php-ext-install gmp
-
-# simplesamlphp/simplesamlphp 2.1.0 requires ext-intl.
-RUN apt-get install -y libicu-dev g++
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-install intl
 
 # Install composer dependencies.
 RUN composer install --prefer-dist --no-interaction
@@ -115,7 +108,3 @@ RUN php -r "opcache_reset();"
 #RUN usermod -G staff www-data
 
 ### DEV SPECIFIC - END ###
-
-# Redis.
-RUN pecl install redis \
- && docker-php-ext-enable redis
