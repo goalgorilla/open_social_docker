@@ -1,4 +1,4 @@
-FROM drupal:10.6.3-php8.4
+FROM drupal:10.6.9-php8.4
 LABEL org.opencontainers.image.authors="devel@goalgorilla.com"
 
 # Install packages.
