@@ -17,6 +17,17 @@ RUN apt-get update && apt-get install -y \
   vim && \
   apt-get clean
 
+# Disable client-side TLS requirement for the mariadb-client tools.
+# Recent mariadb-client (11.8.x) defaults to --ssl=on at the binary level. Dev
+# compose stacks typically run MariaDB without TLS, which breaks drush si and
+# mariadb-dump. A /etc/mysql/conf.d override is not sufficient because Drush
+# invokes `mariadb --defaults-file=...`, which bypasses the default config
+# search path. Wrap the binaries to inject --skip-ssl regardless of caller.
+RUN mv /usr/bin/mariadb /usr/bin/mariadb.real \
+ && mv /usr/bin/mariadb-dump /usr/bin/mariadb-dump.real \
+ && printf '#!/bin/sh\nexec /usr/bin/mariadb.real "$@" --skip-ssl\n' > /usr/bin/mariadb \
+ && printf '#!/bin/sh\nexec /usr/bin/mariadb-dump.real "$@" --skip-ssl\n' > /usr/bin/mariadb-dump \
+ && chmod +x /usr/bin/mariadb /usr/bin/mariadb-dump
 
 ADD mailcatcher-msmtp.conf /etc/msmtprc
 
