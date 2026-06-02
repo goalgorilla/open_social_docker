@@ -1,4 +1,4 @@
-FROM drupal:10.6.9-php8.4
+FROM drupal:10.6.10-php8.4
 LABEL org.opencontainers.image.authors="devel@goalgorilla.com"
 
 # Install packages.
@@ -13,8 +13,7 @@ RUN apt-get update && apt-get install -y \
   msmtp \
   libzip-dev \
   nano \
-  7zip \
-  vim && \
+  7zip && \
   apt-get clean
 
 # Disable client-side TLS requirement for the mariadb-client tools.
@@ -40,7 +39,7 @@ RUN curl -sSLf \
         -o /usr/local/bin/install-php-extensions \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions
-RUN install-php-extensions zip bcmath exif sockets soap gmp intl redis rdkafka
+RUN install-php-extensions zip bcmath exif sockets soap gmp intl redis rdkafka blackfire
 
 # Install Composer.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -99,24 +98,6 @@ RUN pecl install xdebug-3.4.2 && \
     sed -i '1 a xdebug.client_host=host.docker.internal' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     sed -i '1 a xdebug.idekey=PHPSTORM' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# Blackfire
-# @todo Fix PHP 8 based blackfire installation
-#RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
-#    && architecture=$(uname -m) \
-#    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/$architecture/$version \
-#    && mkdir -p /tmp/blackfire \
-#    && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire \
-#    && mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get ('extension_dir');")/blackfire.so \
-#    && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8307\n" > $PHP_INI_DIR/conf.d/blackfire.ini \
-#    && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
-
 RUN php -r "opcache_reset();"
-
-# @todo Remove these steps as it is not required for latest Docker desktop.
-# Contains the Mac hack to get the permissions to work for development.
-# Set user 1000 and group staff to www-data, enables write permission.
-# https://github.com/boot2docker/boot2docker/issues/581#issuecomment-114804894
-#RUN usermod -u 1000 www-data
-#RUN usermod -G staff www-data
 
 ### DEV SPECIFIC - END ###

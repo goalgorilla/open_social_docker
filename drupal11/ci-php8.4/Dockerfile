@@ -1,4 +1,4 @@
-FROM drupal:11.3.3-php8.4
+FROM drupal:11.3.10-php8.4
 LABEL org.opencontainers.image.authors="devel@goalgorilla.com"
 
 # Install packages.
@@ -13,8 +13,7 @@ RUN apt-get update && apt-get install -y \
   msmtp \
   libzip-dev \
   nano \
-  7zip \
-  vim && \
+  7zip && \
   apt-get clean
 
 # Disable client-side TLS requirement for the mariadb-client tools.
